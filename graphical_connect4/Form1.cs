@@ -15,9 +15,16 @@ namespace graphical_connect4
 	{
 		List<Disc> discList = new List<Disc>();
 		readonly Timer drawTimer = new Timer();
-		readonly int FrameRate = 60;
+		readonly int FrameRate = 30;
 		Image boardPNG;
 		Rectangle boardRect;
+		String boardFilename = "boardUnit.png";
+		Bitmap boardUnitBMP;
+		Bitmap boardBMP;
+		int numCol = 7;
+		int numRow = 6;
+		int boardUnitWidth = 100;
+		int boardUnitHeight = 100;
 		readonly String boardPNGFilename = "board.png";
 		int formerWidth;
 		int formerHeight;
@@ -26,15 +33,21 @@ namespace graphical_connect4
 		{
 			InitializeComponent();
 
-			Disc newDisc = new Disc(new Point(50, 50), Color.Red);
+			Disc newDisc = new Disc(new Point(5, 5), Color.Red, 90);
 			discList.Add(newDisc);
 
 			boardPNG = Image.FromFile(Directory.GetCurrentDirectory() + "\\..\\..\\Resources\\" + boardPNGFilename);
 			boardRect = new Rectangle((int)(Width * 0.1), (int)(Height * 0.1), (int)(Width * 0.8), (int)(Height * 0.8));
-
+			boardUnitBMP = new Bitmap(Directory.GetCurrentDirectory() + "\\..\\..\\Resources\\" + boardFilename);
+			boardBMP = CreateBoardBMP(boardUnitBMP);
 			drawTimer.Interval = 1000/FrameRate;
 			drawTimer.Tick += new EventHandler(drawTimerElapsed);
 			drawTimer.Enabled = true;
+
+			this.Paint += Form1_Paint;
+
+
+
 
 			this.ResizeBegin += new EventHandler(Form1_ResizeBegin);
 			this.ResizeEnd += new EventHandler(Form1_ResizeEnd);
@@ -74,17 +87,27 @@ namespace graphical_connect4
 		}
 
 
+		public void Form1_Paint(object sender, PaintEventArgs e)
+		{
+			//e.Graphics.RotateTransform(30.0F);
+		}
+
+
+
 		public void drawScreen()
 		{
 			Bitmap bufl = new Bitmap(this.Width, this.Height);
+			bufl.SetResolution(boardUnitBMP.HorizontalResolution, boardUnitBMP.VerticalResolution);
 			using (Graphics g = Graphics.FromImage(bufl))
 			{
+				g.ScaleTransform(0.5f, 0.5f);
+				
 				g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 				g.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
 				UpdateBoard();
 				DrawPieces(g);
 				DrawBoard(g);
-				this.CreateGraphics().DrawImageUnscaled(bufl, 0, 0);
+				CreateGraphics().DrawImageUnscaled(bufl, 0, 0);
 				bufl.Dispose();
 			}
 		}
@@ -100,7 +123,29 @@ namespace graphical_connect4
 
 		public void DrawBoard(Graphics g)
 		{
-			g.DrawImage(boardPNG, boardRect);
+			Graphics boardGraphics = Graphics.FromImage(boardUnitBMP);
+			for (int r = 0; r < numRow; r++)
+			{
+				for (int c = 0; c < numCol; c++)
+				{
+					g.DrawImageUnscaled(boardUnitBMP, new Point(c * boardUnitBMP.Width, r * boardUnitBMP.Height));
+				}
+			}
+			//Bitmap temp = new Bitmap(boardUnitBMP.Width * numRow, boardUnitBMP.Width * numCol, boardGraphics);
+			//g.DrawImage(temp, new Point(0, 0));
+		}
+
+		private Bitmap CreateBoardBMP(Bitmap unit)
+		{
+			Graphics boardGraphics = Graphics.FromImage(boardUnitBMP);
+			for (int r = 0; r < numRow; r++)
+			{
+				for (int c = 0; c < numCol; c++)
+				{
+					boardGraphics.DrawImageUnscaled(boardUnitBMP, new Point(c * boardUnitBMP.Width, r * boardUnitBMP.Height));
+				}
+			}
+			return new Bitmap(boardUnitBMP.Width * numRow, boardUnitBMP.Width * numCol, boardGraphics);
 		}
 
 		public void UpdateBoard()
