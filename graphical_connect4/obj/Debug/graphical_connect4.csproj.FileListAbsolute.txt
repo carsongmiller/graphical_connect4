@@ -8,3 +8,13 @@ C:\Users\carso\Documents\programming\graphical_connect4\graphical_connect4\obj\D
 C:\Users\carso\Documents\programming\graphical_connect4\graphical_connect4\obj\Debug\graphical_connect4.csproj.CoreCompileInputs.cache
 C:\Users\carso\Documents\programming\graphical_connect4\graphical_connect4\obj\Debug\graphical_connect4.exe
 C:\Users\carso\Documents\programming\graphical_connect4\graphical_connect4\obj\Debug\graphical_connect4.pdb
+C:\Users\Carson\Documents\Programming\graphical_connect4\graphical_connect4\bin\Debug\graphical_connect4.exe.config
+C:\Users\Carson\Documents\Programming\graphical_connect4\graphical_connect4\bin\Debug\graphical_connect4.exe
+C:\Users\Carson\Documents\Programming\graphical_connect4\graphical_connect4\bin\Debug\graphical_connect4.pdb
+C:\Users\Carson\Documents\Programming\graphical_connect4\graphical_connect4\obj\Debug\graphical_connect4.csprojAssemblyReference.cache
+C:\Users\Carson\Documents\Programming\graphical_connect4\graphical_connect4\obj\Debug\graphical_connect4.Form1.resources
+C:\Users\Carson\Documents\Programming\graphical_connect4\graphical_connect4\obj\Debug\graphical_connect4.Properties.Resources.resources
+C:\Users\Carson\Documents\Programming\graphical_connect4\graphical_connect4\obj\Debug\graphical_connect4.csproj.GenerateResource.cache
+C:\Users\Carson\Documents\Programming\graphical_connect4\graphical_connect4\obj\Debug\graphical_connect4.csproj.CoreCompileInputs.cache
+C:\Users\Carson\Documents\Programming\graphical_connect4\graphical_connect4\obj\Debug\graphical_connect4.exe
+C:\Users\Carson\Documents\Programming\graphical_connect4\graphical_connect4\obj\Debug\graphical_connect4.pdb
